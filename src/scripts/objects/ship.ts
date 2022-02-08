@@ -8,6 +8,6 @@ export default class Ship extends Phaser.Physics.Arcade.Sprite {
       frames: [2, 7]
     })
     this.setCollideWorldBounds(true)
-    this.anims.play({ key: 'rocket', frameRate: 24 })
+    // this.anims.play({ key: 'rocket', frameRate: 24 })
   }
 }
