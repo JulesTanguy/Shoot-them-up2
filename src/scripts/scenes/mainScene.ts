@@ -1,32 +1,39 @@
-import PhaserLogo from '../objects/phaserLogo'
-import FpsText from '../objects/fpsText'
 import Ship from '../objects/ship'
 
 export default class MainScene extends Phaser.Scene {
-  fpsText
+  ship: Ship
+  KeyLeft
+  KeyRight
 
   constructor() {
     super({ key: 'MainScene' })
   }
 
   create() {
-    // new PhaserLogo(this, this.cameras.main.width / 2, 0)
-    this.fpsText = new FpsText(this)
+    let background = this.add.image(this.cameras.main.width / 2, 0, 'fond')
+    this.tweens.add({
+      targets: background,
+      y: 304,
+      duration: 5000,
+      repeat: -1,
+      ease: Phaser.Math.Easing.Linear
+    })
 
-    // display the Phaser.VERSION
-    this.add
-      .text(this.cameras.main.width - 15, 15, `Phaser v${Phaser.VERSION}`, {
-        color: '#000000',
-        fontSize: '15px'
-      })
-      .setOrigin(1, 0)
+    this.KeyLeft = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT)
+    this.KeyRight = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT)
 
     // let ship = this.add.sprite(this.cameras.main.width / 2, this.cameras.main.height, 'ship', 2)
     // ship.setCollideWorldBounds(true)
-    let ship = new Ship(this, this.cameras.main.width / 2, this.cameras.main.height)
+    this.ship = new Ship(this, this.cameras.main.width / 2, this.cameras.main.height)
   }
 
   update() {
-    this.fpsText.update()
+    if (this.KeyLeft.isDown) {
+      this.ship.body.velocity.x = -200
+    } else if (this.KeyRight.isDown) {
+      this.ship.body.velocity.x = 200
+    } else {
+      this.ship.body.velocity.x = 0
+    }
   }
 }
