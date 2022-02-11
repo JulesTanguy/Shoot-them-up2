@@ -30,10 +30,10 @@ const prod = {
     //   },
     //   ['vendors.*.js', 'sw.js']
     // ),
-    new InjectManifest({
-      swSrc: path.resolve(__dirname, '../pwa/sw.js'),
-      swDest: 'sw.js'
-    })
+    // new InjectManifest({
+    //   swSrc: path.resolve(__dirname, '../pwa/sw.js'),
+    //   swDest: 'sw.js'
+    // })
   ]
 }
 

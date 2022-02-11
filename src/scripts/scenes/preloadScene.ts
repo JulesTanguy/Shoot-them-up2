@@ -4,7 +4,6 @@ export default class PreloadScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('phaser-logo', 'assets/img/phaser-logo.png')
     this.load.image('fond', 'assets/desert-backgorund-looped.png')
 
     this.load.spritesheet('bullet', 'assets/laser-bolts.png', {
@@ -16,9 +15,22 @@ export default class PreloadScene extends Phaser.Scene {
       frameWidth: 16,
       frameHeight: 24
     })
-    // this.load.spritesheet('enemy1', 'assets/enemy-small.png', 16, 16, 2)
-    // this.load.spritesheet('enemy2', 'assets/enemy-medium.png', 32, 16, 2)
-    // this.load.spritesheet('enemy3', 'assets/enemy-big.png', 32, 32, 2)
+
+    this.load.spritesheet('enemy1', 'assets/enemy-small.png', {
+      frameWidth: 16,
+      frameHeight: 16
+    })
+
+    this.load.spritesheet('enemy2', 'assets/enemy-medium.png', {
+      frameWidth: 32,
+      frameHeight: 16
+    })
+
+    this.load.spritesheet('enemy3', 'assets/enemy-big.png', {
+      frameWidth: 32,
+      frameHeight: 32
+    })
+    this.load.bitmapFont('pixelFont', 'assets/font/font.png', 'assets/font/font.xml')
     // this.load.spritesheet('explosion', 'assets/explosion.png', 16, 16, 5)
   }
 

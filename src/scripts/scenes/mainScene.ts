@@ -1,15 +1,19 @@
+import Enemy from '../objects/enemy'
 import Ship from '../objects/ship'
 
 export default class MainScene extends Phaser.Scene {
   ship: Ship
-  KeyLeft
-  KeyRight
+  KeyLeft: Phaser.Input.Keyboard.Key
+  KeyRight: Phaser.Input.Keyboard.Key
+  enemies: Phaser.GameObjects.Group
 
   constructor() {
     super({ key: 'MainScene' })
   }
 
   create() {
+    const ENEMY_NUMBER = 4
+
     let background = this.add.image(this.cameras.main.width / 2, 0, 'fond')
     this.tweens.add({
       targets: background,
@@ -22,18 +26,26 @@ export default class MainScene extends Phaser.Scene {
     this.KeyLeft = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT)
     this.KeyRight = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT)
 
-    // let ship = this.add.sprite(this.cameras.main.width / 2, this.cameras.main.height, 'ship', 2)
-    // ship.setCollideWorldBounds(true)
     this.ship = new Ship(this, this.cameras.main.width / 2, this.cameras.main.height)
+
+    this.enemies = this.add.group()
+    for (let i = 0; i < ENEMY_NUMBER; i++) {
+      this.enemies.add(new Enemy(this, Phaser.Math.Between(100, 200), 4))
+    }
+
+    let collisionHandler = () => {
+      this.scene.start('GameOverScene')
+    }
+    this.physics.add.collider(this.ship, this.enemies, collisionHandler)
   }
 
   update() {
+    this.ship.body.velocity.x = 0
     if (this.KeyLeft.isDown) {
       this.ship.body.velocity.x = -200
-    } else if (this.KeyRight.isDown) {
+    }
+    if (this.KeyRight.isDown) {
       this.ship.body.velocity.x = 200
-    } else {
-      this.ship.body.velocity.x = 0
     }
   }
 }
