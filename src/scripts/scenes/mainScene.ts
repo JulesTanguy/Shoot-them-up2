@@ -1,5 +1,6 @@
 import Bullet from '../objects/bullet'
 import Enemy from '../objects/enemy'
+import Explosion from '../objects/explosion'
 import Ship from '../objects/ship'
 
 export default class MainScene extends Phaser.Scene {
@@ -52,6 +53,8 @@ export default class MainScene extends Phaser.Scene {
     let hitEnemy = (bullet: any, enemy: any) => {
       bullet.destroy()
       enemy.destroy()
+      console.log(typeof enemy)
+      new Explosion(this, enemy.x, enemy.y)
       this.score++
       scoreText.setText(this.score.toString())
       this.time.addEvent({
