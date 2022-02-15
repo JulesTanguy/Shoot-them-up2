@@ -53,7 +53,6 @@ export default class MainScene extends Phaser.Scene {
     let hitEnemy = (bullet: any, enemy: any) => {
       bullet.destroy()
       enemy.destroy()
-      console.log(typeof enemy)
       new Explosion(this, enemy.x, enemy.y)
       this.score++
       scoreText.setText(this.score.toString())
