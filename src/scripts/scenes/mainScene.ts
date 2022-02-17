@@ -69,10 +69,18 @@ export default class MainScene extends Phaser.Scene {
 
   update(time: number) {
     this.ship.body.velocity.x = 0
+    this.ship.playAfterRepeat('idle')
+
     if (this.KeyLeft.isDown) {
+      if (this.ship.anims.getName() !== 'left') {
+        this.ship.play('left')
+      }
       this.ship.body.velocity.x = -200
     }
     if (this.KeyRight.isDown) {
+      if (this.ship.anims.getName() !== 'right') {
+        this.ship.play('right')
+      }
       this.ship.body.velocity.x = 200
     }
 
