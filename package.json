@@ -31,15 +31,11 @@
     "url": "https://github.com/yandeu/phaser-project-template",
     "author": "Yannick Deubel (https://github.com/yandeu)"
   },
-  "engines": {
-    "node": ">=12"
-  },
   "license": "MIT",
   "dependencies": {
     "phaser": "^3.55.2"
   },
   "devDependencies": {
-    "@yandeu/prettier-config": "^0.0.3",
     "vite": "^3.2.4"
   }
 }
