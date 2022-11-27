@@ -9,24 +9,21 @@ const DEFAULT_HEIGHT = 192
 const config = {
   type: Phaser.AUTO,
   backgroundColor: '#000000',
+  parent: 'game-container',
   scale: {
-    parent: 'phaser-game',
-    mode: Phaser.Scale.FIT,
-    autoCenter: Phaser.Scale.CENTER_BOTH,
+    parent: 'game-container',
+    mode: Phaser.Scale.NONE,
+    autoCenter: Phaser.Scale.NO_CENTER,
     width: DEFAULT_WIDTH,
     height: DEFAULT_HEIGHT
   },
   scene: [PreloadScene, MainScene, GameOverScene],
   physics: {
     default: 'arcade',
-    arcade: {
-      // debug: true
-      // gravity: { y: 400 }
-    }
   },
   pixelArt: true
 }
 
 window.addEventListener('load', () => {
-  const game = new Phaser.Game(config)
+  new Phaser.Game(config)
 })

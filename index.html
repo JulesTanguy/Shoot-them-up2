@@ -8,16 +8,19 @@
     <style>
       html,
       body {
-        height: 100%;
-        margin: 0;
         background-color: #000000;
+        margin: 0;
+        overflow: hidden;
+      }
+      #game-container > canvas {
+        height: 100vh;
+        width: auto;
       }
     </style>
-
+    <script type="module" src="/src/game.ts"></script>
     <noscript>Please enable javascript to continue using this application.</noscript>
   </head>
   <body>
     <div id="game-container"></div>
-    <script type="module" src="/src/game.ts"></script>
   </body>
 </html>
